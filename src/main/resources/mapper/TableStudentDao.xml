@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.test.dao.TableStudentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.student.test.entity.TableStudent">
+        <id column="student_id" property="studentId" />
+        <result column="student_name" property="studentName" />
+        <result column="student_sex" property="studentSex" />
+        <result column="student_age" property="studentAge" />
+        <association property="tableScore" autoMapping="true" column="score_id" javaType="com.student.test.entity.TableScore">
+            <id property="scoreId" column="score_id"/>
+            <result property="score" column="score"/>
+        </association>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id AS studentId, student_name AS studentName, student_sex AS studentSex, student_age AS studentAge
+    </sql>
+
+    <select id="queryList" resultMap="BaseResultMap">
+        select  student.student_name,
+                student.student_sex,
+                student.student_age,
+                score.score_id,
+                score.score
+        FROM
+            table_student student
+        JOIN
+            table_score score
+        on
+            student.student_id = score.student_id
+
+    </select>
+
+</mapper>

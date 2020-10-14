@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.test.dao.TableScoreDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.student.test.entity.TableScore">
+        <id column="score_id" property="scoreId" />
+        <result column="score" property="score" />
+        <result column="student_id" property="studentId" />
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        score_id AS scoreId, score, student_id AS studentId
+    </sql>
+
+</mapper>
